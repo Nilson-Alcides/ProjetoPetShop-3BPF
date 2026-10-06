@@ -11,7 +11,12 @@ namespace ProjetoPetShop.Models.Repositorio
     public class TutorRepositorio : ITutorRepositorio
     {
         private readonly string _conexaoMySQL;
-        
+
+        public TutorRepositorio(IConfiguration conf)
+        {
+            _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
+        }
+
         public IEnumerable<Tutor> ObterTodosTutor()
         {
             List<Tutor> tutorList = new List<Tutor>();
@@ -32,12 +37,12 @@ namespace ProjetoPetShop.Models.Repositorio
                     tutorList.Add(
                         new Tutor
                         {
-                            id = Convert.ToInt32(dr["codCli"]),
-                            nome = Convert.ToString(dr["nomeCli"]),
-                            telefone = Convert.ToString(dr["telCli"]),
-                            email = Convert.ToString(dr["EmailCli"])
+                            id = Convert.ToInt32(dr["id_tutor"]),
+                            nome = Convert.ToString(dr["nome"]),
+                            telefone = Convert.ToString(dr["telefone"]),
+                            email = Convert.ToString(dr["email"])
                         }
-                        );
+                    );
                 }
                 return tutorList;
             }
