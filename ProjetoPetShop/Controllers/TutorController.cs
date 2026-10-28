@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI;
+using ProjetoPetShop.Models;
 using ProjetoPetShop.Models.Repositorio.Contrato;
 
 namespace ProjetoPetShop.Controllers
@@ -15,6 +17,18 @@ namespace ProjetoPetShop.Controllers
         public IActionResult Index()
         {
             return View(_tutorRepositorio.ObterTodosTutor());
+        }
+        //Monta pagina com o formario
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Cadastrar(Tutor tutor)
+        {
+            _tutorRepositorio.Cadastrar(tutor);
+            return View();
         }
     }
 }

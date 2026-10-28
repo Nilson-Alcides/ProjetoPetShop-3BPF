@@ -3,45 +3,39 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<br />
+<h2>Lista de tutores </h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Cadastrar">Cadastrar</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().id)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().nome)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().telefone)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().email)</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tutor tutor in Model)
+            {
+                <tr>
+                    <th scope="row">@tutor.id</th>
+                    <td>@tutor.nome)</td>
+                    <td>@tutor.telefone)</td>
+                    <td>@tutor.email)</td>
+                    <td>
+                        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@tutor.id">Editar</a>
+                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@tutor.id">Detalhes</a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@tutor.id">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

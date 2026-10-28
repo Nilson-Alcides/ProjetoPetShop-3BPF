@@ -10,7 +10,7 @@ namespace ProjetoPetShop.Models.Repositorio
 
     public class TutorRepositorio : ITutorRepositorio
     {
-        private readonly string _conexaoMySQL;
+        private readonly string ? _conexaoMySQL;
 
         public TutorRepositorio(IConfiguration conf)
         {
@@ -54,7 +54,19 @@ namespace ProjetoPetShop.Models.Repositorio
 
         public void Cadastrar(Tutor tutor)
         {
-            throw new NotImplementedException();
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into Tutor(nome, telefone, email) " +
+                "values(@nome, @telefone, @email)", conexao);
+
+                cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = tutor.nome;
+                cmd.Parameters.Add("@telefone", MySqlDbType.VarChar).Value = tutor.telefone;
+                cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = tutor.email;
+
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
         }
 
         public void Excluir(int id)

@@ -31,6 +31,9 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+// Controllers MVC e API
+app.MapControllers();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

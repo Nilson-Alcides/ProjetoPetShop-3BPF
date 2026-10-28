@@ -18,14 +18,14 @@ namespace ProjetoPetShop.Models
 
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "O campo nome do tutor é obrigatorio")]
-        public string nome { get; set; }
+        public string? nome { get; set; }
 
         [Display(Name = "Telefone")]
         [Required(ErrorMessage = "O campo do telefone é obrigatorio")]
-        public string telefone { get; set; }
+        public string? telefone { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "O campo do email é obrigatorio")]
-        public string email { get; set; }
+        public string ? email { get; set; }
     }
 }
